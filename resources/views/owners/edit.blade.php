@@ -8,6 +8,7 @@
 
             <form method="POST" action="{{$action}}">
                 {{ csrf_field() }}
+                <input type="hidden" name="ownerId" value="{{$owner->id}}"/>
                 <div class="form-group">
                     <label for="ownerName">Name</label>
                     <input type="text" class="form-control" name="ownerName" id="ownerName" placeholder="Name" value="{{$owner->name}}">

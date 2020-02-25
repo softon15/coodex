@@ -31,12 +31,12 @@ class OwnersController extends Controller
         $name = $request->input('ownerName');
         $id = $request->input('ownerId');
 
-        $owner = new Owner;
+        $owner = Owner::where('id', $id)->first();
         $owner->name = $name;
 
         $owner->save();
 
-        return redirect('/owners/add')->with('success', 'Owner added');
+        return redirect('/owners')->with('success', 'Owner modified');
     }
 
     public function addOwner()
@@ -47,5 +47,11 @@ class OwnersController extends Controller
     public function editOwner(Owner $owner)
     {
         return view('owners.edit')->with('owner', $owner);
+    }
+
+    public function deleteOwner(Owner $owner)
+    {
+        $owner->delete();
+        return redirect('/owners')->with('success', 'Owner removed');
     }
 }
